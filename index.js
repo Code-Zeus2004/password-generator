@@ -1,13 +1,13 @@
-// ---------- Character sets ----------
+//Character sets 
 const LOWER = 'abcdefghijklmnopqrstuvwxyz';
 const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const NUMBERS = '0123456789';
 const SYMBOLS = '!@#$%^&*()-_=+[]{};:,.<>/?';
 
-// characters often confused (optional removal)
+// characters often confused
 const SIMILAR = '0O1lI|`\'"';
 
-// ---------- DOM ----------
+
 const passwordOutput = document.getElementById('passwordOutput');
 const lengthRange = document.getElementById('lengthRange');
 const lengthNumber = document.getElementById('lengthNumber');
@@ -78,7 +78,7 @@ function getSettings() {
 loadSettings();
 generateAndShow();
 
-// ---------- main generation function ----------
+//main generation function
 function generatePassword(options) {
   const {
     length,
