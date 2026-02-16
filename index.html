@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+     <main class="card">
+    <header class="card-header">
+      <h1>Password Generator</h1>
+      <p class="subtitle">Dark modern UI • strength meter • copy • options</p>
+    </header>
+
+    <section class="output">
+      <input id="passwordOutput" readonly aria-label="Generated password" />
+      <div class="actions">
+        <button id="copyBtn" title="Copy password">Copy</button>
+        <button id="regenBtn" title="Regenerate">Regenerate</button>
+      </div>
+    </section>
+
+    <section class="controls">
+      <label class="row">
+        <span>Length</span>
+        <div class="length-controls">
+          <input id="lengthRange" type="range" min="4" max="64" value="12" />
+          <input id="lengthNumber" type="number" min="4" max="64" value="12" />
+        </div>
+      </label>
+
+      <div class="checkbox-grid">
+        <label><input id="lowercase" type="checkbox" checked /> Lowercase (a-z)</label>
+        <label><input id="uppercase" type="checkbox" checked /> Uppercase (A-Z)</label>
+        <label><input id="numbers" type="checkbox" checked /> Numbers (0-9)</label>
+        <label><input id="symbols" type="checkbox" checked /> Symbols (!@#...)</label>
+        <label><input id="excludeSimilar" type="checkbox" /> Exclude similar (0O1l)</label>
+        <label><input id="guaranteeEach" type="checkbox" checked /> Guarantee each chosen type</label>
+      </div>
+
+      <div class="strength">
+        <span>Strength</span>
+        <div id="strengthBar" class="strength-bar">
+          <div id="strengthFill" class="strength-fill"></div>
+        </div>
+        <small id="strengthText">—</small>
+      </div>
+    </section>
+
+    <footer class="card-footer">
+      <small>Auto-regenerates when you change options.</small>
+    </footer>
+  </main>
+    
+<script src="index.js"></script>
+</body>
+</html>
