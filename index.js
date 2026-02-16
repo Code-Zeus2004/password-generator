@@ -25,6 +25,7 @@ const strengthText = document.getElementById('strengthText');
 // sync slider and number inputs
 lengthRange.addEventListener('input', () => {
   lengthNumber.value = lengthRange.value;
+  saveSettings();
   generateAndShow();
 });
 lengthNumber.addEventListener('input', () => {
@@ -33,16 +34,17 @@ lengthNumber.addEventListener('input', () => {
   if (v > Number(lengthNumber.max)) v = Number(lengthNumber.max);
   lengthNumber.value = v;
   lengthRange.value = v;
+  saveSettings();
   generateAndShow();
 });
 
 // re-generate when options change
 [lowercase, uppercase, numbers, symbols, excludeSimilar, guaranteeEach].forEach(el => {
-  el.addEventListener('change', generateAndShow);
+  el.addEventListener('change', generateAndShow, saveSettings);
 });
 
 // manual regen and copy
-regenBtn.addEventListener('click', generateAndShow);
+regenBtn.addEventListener('click', generateAndShow, saveSettings);
 copyBtn.addEventListener('click', async () => {
   const text = passwordOutput.value;
   if (!text) return;
@@ -59,7 +61,21 @@ copyBtn.addEventListener('click', async () => {
   }
 });
 
+function getSettings() {
+  return {
+    length: Number(lengthRange.value),
+    includeLower: lowercase.checked,
+    includeUpper: uppercase.checked,
+    includeNumbers: numbers.checked,
+    includeSymbols: symbols.checked,
+    excludeSimilarChars: excludeSimilar.checked,
+    guaranteeEachType: guaranteeEach.checked
+  };
+}
+
+
 // initial generate
+loadSettings();
 generateAndShow();
 
 // ---------- main generation function ----------
@@ -183,4 +199,25 @@ function generateAndShow() {
   }
 
   strengthText.textContent = pw ? `${st.label} (${Math.round((st.score/4)*100)}%)` : '—';
+}
+
+function saveSettings() {
+  const settings = getSettings();
+  localStorage.setItem("passwordSettings", JSON.stringify(settings));
+}
+
+function loadSettings() {
+  const saved = localStorage.getItem("passwordSettings");
+  if (!saved) return;
+
+  const settings = JSON.parse(saved);
+
+  lengthRange.value = settings.length;
+  lengthNumber.value = settings.length;
+  lowercase.checked = settings.includeLower;
+  uppercase.checked = settings.includeUpper;
+  numbers.checked = settings.includeNumbers;
+  symbols.checked = settings.includeSymbols;
+  excludeSimilar.checked = settings.excludeSimilarChars;
+  guaranteeEach.checked = settings.guaranteeEachType;
 }
