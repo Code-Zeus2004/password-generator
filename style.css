@@ -1,4 +1,15 @@
 :root{
+  --bg: #020617;
+}
+
+.light-mode{
+  --bg: #e2e8f0;
+  color:#0f172a;
+}
+
+
+
+:root{
   --bg:#0b0f14;
   --card:#0f1620aa;
   --glass:#111827;
@@ -144,3 +155,57 @@ input[type="checkbox"]{ width:16px; height:16px }
 .output input{
   animation:fadeSlide .25s ease;
 }
+
+/* LIGHT MODE */
+.light-mode{
+  background: linear-gradient(135deg,#f1f5f9,#e2e8f0);
+  color:#0f172a;
+}
+
+.light-mode .card{
+  background:rgba(255,255,255,0.7);
+  border:1px solid rgba(0,0,0,0.1);
+}
+
+.light-mode input{
+  color:#0f172a;
+  border:1px solid rgba(0,0,0,0.2);
+}
+
+.theme-btn{
+  position:absolute;
+  right:20px;
+  top:20px;
+  border:none;
+  background:transparent;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.history{
+  margin-top:20px;
+  border-top:1px solid rgba(255,255,255,0.1);
+  padding-top:10px;
+}
+
+.history ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+  max-height:150px;
+  overflow-y:auto;
+}
+
+.history li{
+  display:flex;
+  justify-content:space-between;
+  padding:6px 4px;
+  font-family:monospace;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  cursor:pointer;
+}
+
+.history li:hover{
+  background:rgba(255,255,255,0.05);
+}
+
